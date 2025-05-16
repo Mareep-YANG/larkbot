@@ -1,10 +1,12 @@
 package cn.mareep.larkbot.listener;
 
+import cn.mareep.larkbot.Bot;
 import cn.mareep.larkbot.event.Event;
 import cn.mareep.larkbot.event.EventListener;
 import cn.mareep.larkbot.event.EventManager;
 import cn.mareep.larkbot.event.GroupMessageEvent;
 import cn.mareep.larkbot.sessions.MarkdownEditSession;
+import cn.mareep.larkbot.utils.WordpressUtil;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -38,11 +40,21 @@ public class GroupMessageListener implements EventListener {
 
             // 退出并输出HTML
             if (content.equals("/done")) {
+                // 必须有编辑会话
+                if (!editSessions.containsKey(groupId)) {
+                    System.out.println("没有编辑会话，请先输入/edit进入编辑模式");
+                    return;
+                }
+                // 必须设置标题
+                if (editSessions.get(groupId).getTitle().isEmpty()) {
+                    System.out.println("请先设置标题，使用/title <标题>命令");
+                    return;
+                }
                 MarkdownEditSession session = editSessions.remove(groupId);
                 if (session != null) {
                     String html = session.getMarkdownUtil().toHtml();
                     System.out.println("Markdown编辑完成，输出HTML：\n" + html);
-                    // TODO: 发送html到群
+                    System.out.println(WordpressUtil.publishPost(Bot.config.get("wordpressUrl"), Bot.config.get("wordpressUsername"), Bot.config.get("wordpressPassword"), session.getTitle(), html, null));
                 }
                 return;
             }
@@ -55,7 +67,6 @@ public class GroupMessageListener implements EventListener {
                 String content = jsonMessage.get("text").getAsString();
                 if (content.startsWith("/title ")) {
                     String title = content.substring(7);
-                    session.getMarkdownUtil().addHeader(title, 1);
                     session.setTitle(title);
                     System.out.println("已设置标题: " + title);
                 }
