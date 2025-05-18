@@ -10,7 +10,6 @@ import cn.mareep.larkbot.sessions.MarkdownEditSession;
 import cn.mareep.larkbot.utils.WordpressUtil;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.slf4j.Logger;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -92,14 +91,19 @@ public class GroupMessageListener implements EventListener {
                 }
             }
             if (messageEvent.msg_type.equals("image")) {
-                String imageKey = jsonMessage.get("image_key").getAsString();
-                try {
-                    String fileName = "shuoshuo_"+ Arrays.hashCode(messageApi.getMessageImage(messageEvent.msg_id, imageKey))+".jpg";
-                    session.getCosUtil().uploadImage(fileName,messageApi.getMessageImage(messageEvent.msg_id,imageKey));
-                    session.getMarkdownUtil().addImage("",Bot.getConfig().get("imageBaseUrl")+fileName);
-                    sendMessage("已上传图片");
-                } catch (Exception e) {
-                    Bot.getLogger().error("消息图片获取失败");
+                if (Bot.getConfig().get("imageType").equals("TencentCOS")) {
+                    String imageKey = jsonMessage.get("image_key").getAsString();
+                    try {
+                        String fileName = "shuoshuo_" + Arrays.hashCode(messageApi.getMessageImage(messageEvent.msg_id, imageKey)) + ".jpg";
+                        session.getCosUtil().uploadImage(fileName, messageApi.getMessageImage(messageEvent.msg_id, imageKey));
+                        session.getMarkdownUtil().addImage("", Bot.getConfig().get("imageBaseUrl") + fileName);
+                        sendMessage("已上传图片");
+                    } catch (Exception e) {
+                        Bot.getLogger().error("消息图片获取失败");
+                    }
+                }
+                else{
+                    sendMessage("未配置图片存储方式，图片添加失败");
                 }
             }
         }
