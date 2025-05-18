@@ -16,10 +16,10 @@ public class LarkEventDispatcher {
                     EventMessage messageEvent = eventData.getMessage();
                     EventSender sender = eventData.getSender();
                     if (messageEvent.getChatType().equals("group")) {
-                        GroupMessageEvent groupMessageEvent = new GroupMessageEvent(messageEvent.getContent(), messageEvent.getMessageType(), messageEvent.getChatId(), sender.getSenderId().getUserId());
+                        GroupMessageEvent groupMessageEvent = new GroupMessageEvent(messageEvent.getContent(), messageEvent.getMessageType(),messageEvent.getMessageId(), messageEvent.getChatId(), sender.getSenderId().getUserId());
                         EventManager.callEvent(groupMessageEvent);
                     } else if (messageEvent.getChatType().equals("p2p")) {
-                        PrivateMessageEvent privateMessageEvent = new PrivateMessageEvent(messageEvent.getContent(), messageEvent.getMessageType(), sender.getSenderId().getUserId());
+                        PrivateMessageEvent privateMessageEvent = new PrivateMessageEvent(messageEvent.getContent(), messageEvent.getMessageType(), messageEvent.getMessageId(), sender.getSenderId().getUserId());
                         EventManager.callEvent(privateMessageEvent);
                     }
                 }
