@@ -60,6 +60,7 @@ mvn clean package
 | tencentCloudBucketName   | COS 存储桶名称           | N/A                            |
 | tencentCloudRegion       | 存储桶所属地域            | ap-nanjing                     |
 | tencentCloudImagePath    | 图片存储路径              | image/                         |
+
 ##### 阿里云
 | 参数                      | 说明                 | 示例值                            |
 |--------------------------|--------------------|--------------------------------|
@@ -69,10 +70,7 @@ mvn clean package
 | AliyunOssRegion       | 存储桶所属地域            | ap-nanjing                     |
 | AliyunOssEndpoint    | 你的OSS所属地域的endpoint |  https://oss-cn-hangzhou.aliyuncs.com                        |
 | AliyunImagePath    | 图片存储路径(桶内)         | image/                         |
-> 创建指引：
-> 1. 登录[腾讯云控制台](https://console.cloud.tencent.com/)
-> 2. 创建 COS 存储桶，确保地域与配置一致
-> 3. 在[访问管理](https://console.cloud.tencent.com/cam/capi)创建API密钥
+
 
 #### ♻️ 使用注意事项
 1. 安全保密：请勿将 `SecretId`/`SecretKey` 和 `AppSecret` 提交至公开仓库
