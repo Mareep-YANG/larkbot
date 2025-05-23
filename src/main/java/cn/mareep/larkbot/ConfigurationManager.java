@@ -1,11 +1,10 @@
 package cn.mareep.larkbot;
 
 import java.io.*;
-import java.nio.file.*;
 import java.util.Properties;
 
 /**
- * 配置管理器，支持从jar包外部目录读取和保存配置文件
+ * 配置管理器，支持从jar包外部目录读取和保存配置文件.
  */
 public class ConfigurationManager {
     private static final String CONFIG_FILE_NAME = "config.properties";
@@ -17,7 +16,7 @@ public class ConfigurationManager {
     }
 
     /**
-     * 加载配置文件
+     * 加载配置文件.
      */
     public void load() {
         try (InputStream input = new FileInputStream(CONFIG_PATH)) {
@@ -31,7 +30,7 @@ public class ConfigurationManager {
     }
 
     /**
-     * 保存配置到文件
+     * 保存配置到文件.
      */
     public void save() {
         try (OutputStream output = new FileOutputStream(CONFIG_PATH)) {
@@ -42,28 +41,28 @@ public class ConfigurationManager {
     }
 
     /**
-     * 获取配置项
+     * 获取配置项.
      */
     public String get(String key) {
         return properties.getProperty(key);
     }
 
     /**
-     * 设置配置项
+     * 设置配置项.
      */
     public void set(String key, String value) {
         properties.setProperty(key, value);
     }
 
     /**
-     * 获取配置项（带默认值）
+     * 获取配置项（带默认值）.
      */
     public String get(String key, String defaultValue) {
         return properties.getProperty(key, defaultValue);
     }
 
     /**
-     * 判断配置项是否存在
+     * 判断配置项是否存在.
      */
     public boolean containsKey(String key) {
         return properties.containsKey(key);

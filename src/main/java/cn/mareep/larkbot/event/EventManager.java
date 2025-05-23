@@ -2,23 +2,26 @@ package cn.mareep.larkbot.event;
 
 import cn.mareep.larkbot.entity.event.Event;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * 事件管理器，负责事件监听器的注册、注销和事件分发
+ * 事件管理器，负责事件监听器的注册、注销和事件分发.
  */
 public class EventManager {
     private static final Map<Class<? extends Event>, List<EventListener<? extends Event>>> listeners = new HashMap<>();
 
     /**
-     * 注册事件监听器
+     * 注册事件监听器.
      */
     public static <T extends Event> void registerListener(Class<T> eventType, EventListener<T> listener) {
         listeners.computeIfAbsent(eventType, k -> new ArrayList<>()).add(listener);
     }
 
     /**
-     * 注销事件监听器
+     * 注销事件监听器.
      */
     public static <T extends Event> void unregisterListener(Class<T> eventType, EventListener<T> listener) {
         List<EventListener<? extends Event>> list = listeners.get(eventType);
@@ -28,7 +31,7 @@ public class EventManager {
     }
 
     /**
-     * 分发事件
+     * 分发事件.
      */
     @SuppressWarnings("unchecked")
     public static <T extends Event> void callEvent(T event) {

@@ -11,9 +11,22 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Wordpress服务类，负责处理群组消息并与Wordpress进行交互.
+ * 支持Markdown编辑、图片上传、文章发布等功能。
+ * 单例模式实现。
+ */
 public class WordpressService implements IService {
     private static volatile WordpressService instance;
-    private WordpressService() {}
+
+    private WordpressService() {
+    }
+
+    /**
+     * 获取WordpressService单例实例.
+     *
+     * @return WordpressService实例
+     */
     public static WordpressService getInstance() {
         if (instance == null) {
             synchronized (WordpressService.class) {
@@ -28,6 +41,11 @@ public class WordpressService implements IService {
     private final Map<String, MarkdownEditSession> editSessions = new HashMap<>();
     private final MessageService messageApi = new MessageService(Bot.getConfig().get("larkAppId"), Bot.getConfig().get("larkAppSecret"));
 
+    /**
+     * 处理群组消息，根据消息内容进行Markdown编辑、图片上传、文章发布等操作.
+     *
+     * @param messageEvent 群组消息事件
+     */
     public void handleGroupMessage(GroupMessageEvent messageEvent) {
         String groupId = messageEvent.groupId;
         JsonObject jsonMessage = JsonParser.parseString(messageEvent.getMessage()).getAsJsonObject();

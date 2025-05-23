@@ -1,23 +1,26 @@
 package cn.mareep.larkbot.utils;
 
+import com.google.gson.JsonObject;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Base64;
-import com.google.gson.JsonObject;
 
+/**
+ * Wordpress工具类，提供与Wordpress站点交互的静态方法.
+ */
 public class WordpressUtil {
     /**
-     * 发布WordPress文章
-     * @param url WordPress站点地址（如：https://www.yourWebsite.cn）
-     * @param username 用户名
-     * @param password 应用密码
-     * @param title 标题
-     * @param content 正文内容
+     * 发布WordPress文章.
+     *
+     * @param url        WordPress站点地址（如：https://www.yourWebsite.cn）
+     * @param username   用户名
+     * @param password   应用密码
+     * @param title      标题
+     * @param content    正文内容
      * @param categories 分类ID（可选，传null则不设置）
      * @return 发布结果字符串
      */
