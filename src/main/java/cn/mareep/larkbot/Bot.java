@@ -57,8 +57,11 @@ public class Bot {
         if (!config.containsKey("tencentCloudImagePath")){
             config.set("tencentCloudImagePath", "tencentCloudImagePath");
         }
-        if (!config.containsKey(" ")){
+        if (!config.containsKey("imageBaseUrl")){
             config.set("imageBaseUrl", "imageBaseUrl");
+        }
+        if (!config.containsKey("imageType")){
+            config.set("imageType", "TencentCOS");
         }
         config.save();
     }
