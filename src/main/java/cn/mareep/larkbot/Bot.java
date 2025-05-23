@@ -1,8 +1,8 @@
 package cn.mareep.larkbot;
 
 
+import cn.mareep.larkbot.event.LarkEventDispatcher;
 import cn.mareep.larkbot.listener.GroupMessageListener;
-import cn.mareep.larkbot.listener.PrivateMessageListener;
 import com.lark.oapi.ws.Client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +13,6 @@ public class Bot {
     private static final Logger logger = LoggerFactory.getLogger(Bot.class);
     public static void main(String[] args) {
         new GroupMessageListener();
-        new PrivateMessageListener();
         initConfig();
         client = new Client.Builder(config.get("larkAppId"),config.get("larkAppSecret"))
                 .eventHandler(LarkEventDispatcher.getDispatcher())

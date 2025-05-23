@@ -1,8 +1,7 @@
-package cn.mareep.larkbot;
+package cn.mareep.larkbot.event;
 
-import cn.mareep.larkbot.event.*;
-import cn.mareep.larkbot.listener.GroupMessageListener;
-import cn.mareep.larkbot.listener.PrivateMessageListener;
+import cn.mareep.larkbot.entity.event.GroupMessageEvent;
+import cn.mareep.larkbot.entity.event.PrivateMessageEvent;
 import com.lark.oapi.event.EventDispatcher;
 import com.lark.oapi.service.im.ImService;
 import com.lark.oapi.service.im.v1.model.*;

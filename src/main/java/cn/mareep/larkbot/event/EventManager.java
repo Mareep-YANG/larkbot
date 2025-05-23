@@ -1,5 +1,7 @@
 package cn.mareep.larkbot.event;
 
+import cn.mareep.larkbot.entity.event.Event;
+
 import java.util.*;
 
 /**

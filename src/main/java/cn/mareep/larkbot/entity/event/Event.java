@@ -1,4 +1,4 @@
-package cn.mareep.larkbot.event;
+package cn.mareep.larkbot.entity.event;
 
 /**
  * 所有事件的基类

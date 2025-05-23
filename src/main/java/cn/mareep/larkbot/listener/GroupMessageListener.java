@@ -1,16 +1,15 @@
 package cn.mareep.larkbot.listener;
 
 import cn.mareep.larkbot.Bot;
-import cn.mareep.larkbot.api.MessageApi;
-import cn.mareep.larkbot.event.Event;
+import cn.mareep.larkbot.service.MessageService;
+import cn.mareep.larkbot.entity.event.Event;
 import cn.mareep.larkbot.event.EventListener;
 import cn.mareep.larkbot.event.EventManager;
-import cn.mareep.larkbot.event.GroupMessageEvent;
-import cn.mareep.larkbot.sessions.MarkdownEditSession;
+import cn.mareep.larkbot.entity.event.GroupMessageEvent;
+import cn.mareep.larkbot.entity.session.MarkdownEditSession;
 import cn.mareep.larkbot.utils.WordpressUtil;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.slf4j.Logger;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,7 +20,7 @@ public class GroupMessageListener implements EventListener {
     // key: 群号，value: 编辑会话
     private final Map<String, MarkdownEditSession> editSessions = new HashMap<>();
     private final String targetGroupId = "oc_5e7a414f2530188dfe51a2e4845cb582";
-    private final MessageApi messageApi = new MessageApi(Bot.getConfig().get("larkAppId"), Bot.getConfig().get("larkAppSecret"));
+    private final MessageService messageApi = new MessageService(Bot.getConfig().get("larkAppId"), Bot.getConfig().get("larkAppSecret"));
 
     public GroupMessageListener() {
         EventManager.registerListener(GroupMessageEvent.class, this);

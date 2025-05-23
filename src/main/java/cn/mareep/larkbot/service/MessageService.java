@@ -1,15 +1,14 @@
-package cn.mareep.larkbot.api;
+package cn.mareep.larkbot.service;
 
 import com.lark.oapi.Client;
 import com.lark.oapi.core.utils.Jsons;
 import com.lark.oapi.service.im.v1.model.*;
 import java.nio.charset.StandardCharsets;
-import com.lark.oapi.core.request.RequestOptions;
 
-public class MessageApi {
+public class MessageService implements IService {
     private final Client client;
 
-    public MessageApi(String appId, String appSecret) {
+    public MessageService(String appId, String appSecret) {
         this.client = Client.newBuilder(appId, appSecret).build();
     }
 

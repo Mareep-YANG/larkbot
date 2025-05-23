@@ -1,4 +1,6 @@
-package cn.mareep.larkbot.event;
+package cn.mareep.larkbot.entity.event;
+
+import cn.mareep.larkbot.event.MessageEvent;
 
 public class PrivateMessageEvent extends MessageEvent {
     public String userId;

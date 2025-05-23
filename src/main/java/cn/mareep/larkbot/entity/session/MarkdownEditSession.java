@@ -1,4 +1,4 @@
-package cn.mareep.larkbot.sessions;
+package cn.mareep.larkbot.entity.session;
 
 import cn.mareep.larkbot.utils.MarkdownUtil;
 import cn.mareep.larkbot.utils.TencentCosUtil;

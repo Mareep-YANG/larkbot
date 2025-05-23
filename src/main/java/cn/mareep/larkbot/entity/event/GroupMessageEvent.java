@@ -1,6 +1,8 @@
-package cn.mareep.larkbot.event;
+package cn.mareep.larkbot.entity.event;
 
-public class GroupMessageEvent extends MessageEvent{
+import cn.mareep.larkbot.event.MessageEvent;
+
+public class GroupMessageEvent extends MessageEvent {
     public String groupId;
     public String userId;
     public GroupMessageEvent(String message,String msg_type,String msg_id, String groupId, String userId) {
