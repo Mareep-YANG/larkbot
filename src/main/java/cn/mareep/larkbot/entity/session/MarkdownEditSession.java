@@ -1,7 +1,8 @@
 package cn.mareep.larkbot.entity.session;
 
+import cn.mareep.larkbot.service.ImageStorageProvider;
+import cn.mareep.larkbot.service.ImageStorageProviderFactory;
 import cn.mareep.larkbot.utils.MarkdownUtil;
-import cn.mareep.larkbot.utils.TencentCosUtil;
 
 /**
  * Markdown编辑会话，包含Markdown工具、COS工具和标题.
@@ -12,9 +13,9 @@ public class MarkdownEditSession {
      */
     private final MarkdownUtil markdownUtil = new MarkdownUtil();
     /**
-     * 腾讯云COS工具实例.
+     * 图床提供商实例.
      */
-    private final TencentCosUtil cosUtil = new TencentCosUtil();
+    private final ImageStorageProvider imageProvider = ImageStorageProviderFactory.getProvider();
     /**
      * 当前编辑的标题.
      */
@@ -30,12 +31,12 @@ public class MarkdownEditSession {
     }
 
     /**
-     * 获取COS工具实例.
+     * 获取图床提供商实例.
      *
-     * @return TencentCosUtil实例
+     * @return ImageStorageProvider实例
      */
-    public TencentCosUtil getCosUtil() {
-        return cosUtil;
+    public ImageStorageProvider getImageProvider() {
+        return imageProvider;
     }
 
     /**

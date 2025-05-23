@@ -39,7 +39,7 @@ public class WordpressService implements IService {
     }
 
     private final Map<String, MarkdownEditSession> editSessions = new HashMap<>();
-    private final MessageService messageApi = new MessageService(Bot.getConfig().get("larkAppId"), Bot.getConfig().get("larkAppSecret"));
+    private final MessageService messageService = new MessageService(Bot.getConfig().get("larkAppId"), Bot.getConfig().get("larkAppSecret"));
 
     /**
      * 处理群组消息，根据消息内容进行Markdown编辑、图片上传、文章发布等操作.
@@ -98,27 +98,24 @@ public class WordpressService implements IService {
                 }
             }
             if (messageEvent.msg_type.equals("image")) {
-                if (Bot.getConfig().get("imageType").equals("TencentCOS")) {
                     String imageKey = jsonMessage.get("image_key").getAsString();
                     try {
-                        String fileName = "shuoshuo_" + Arrays.hashCode(messageApi.getMessageImage(messageEvent.msg_id, imageKey)) + ".jpg";
-                        session.getCosUtil().uploadImage(fileName, messageApi.getMessageImage(messageEvent.msg_id, imageKey));
+                        String fileName = "shuoshuo_" + Arrays.hashCode(messageService.getMessageImage(messageEvent.msg_id, imageKey)) + ".jpg";
+                        session.getImageProvider().uploadImage(fileName, messageService.getMessageImage(messageEvent.msg_id, imageKey));
                         session.getMarkdownUtil().addImage("", Bot.getConfig().get("imageBaseUrl") + fileName);
                         sendMessage("已上传图片");
                     } catch (Exception e) {
                         Bot.getLogger().error("消息图片获取失败");
                         sendMessage("ERROR！图片接收或上传失败，请检查配置");
                     }
-                } else {
-                    sendMessage("ERROR！未配置图片存储方式，图片添加失败");
-                }
+
             }
         }
     }
 
     private void sendMessage(String message) {
         try {
-            messageApi.sendTextMessage("chat_id", Bot.getConfig().get("wordpressGroupId"), message);
+            messageService.sendTextMessage("chat_id", Bot.getConfig().get("wordpressGroupId"), message);
         } catch (Exception e) {
             Bot.getLogger().error("发送消息失败", e);
         }

@@ -76,26 +76,11 @@ public class Bot {
         if (!config.containsKey("larkAppSecret")) {
             config.set("larkAppSecret", "larkAppSecret");
         }
-        if (!config.containsKey("tencentCloudSecretId")) {
-            config.set("tencentCloudSecretId", "tencentCloudSecretId");
-        }
-        if (!config.containsKey("tencentCloudSecretKey")) {
-            config.set("tencentCloudSecretKey", "tencentCloudSecretKey");
-        }
-        if (!config.containsKey("tencentCloudRegion")) {
-            config.set("tencentCloudRegion", "tencentCloudRegion");
-        }
-        if (!config.containsKey("tencentCloudBucketName")) {
-            config.set("tencentCloudBucketName", "tencentCloudBucketName");
-        }
-        if (!config.containsKey("tencentCloudImagePath")) {
-            config.set("tencentCloudImagePath", "tencentCloudImagePath");
-        }
         if (!config.containsKey("imageBaseUrl")) {
             config.set("imageBaseUrl", "imageBaseUrl");
         }
-        if (!config.containsKey("imageType")) {
-            config.set("imageType", "TencentCOS");
+        if (!config.containsKey("imageStorageProvider")) {
+            config.set("imageStorageProvider", "TencentCOS");
         }
         if (!config.containsKey("wordpressGroupId")) {
             config.set("wordpressGroupId", "wordpressGroupId");
