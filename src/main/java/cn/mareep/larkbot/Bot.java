@@ -63,6 +63,9 @@ public class Bot {
         if (!config.containsKey("imageType")){
             config.set("imageType", "TencentCOS");
         }
+        if (!config.containsKey("wordpressGroupId")){
+            config.set("wordpressGroupId", "wordpressGroupId");
+        }
         config.save();
     }
 }

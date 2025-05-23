@@ -8,19 +8,16 @@ import com.vladsch.flexmark.util.data.MutableDataSet;
 public class MarkdownUtil {
     private final StringBuilder markdownBuilder = new StringBuilder();
 
-    public MarkdownUtil addParagraph(String text) {
+    public void addParagraph(String text) {
         markdownBuilder.append(text).append("\n\n");
-        return this;
     }
 
-    public MarkdownUtil addImage(String altText, String url) {
+    public void addImage(String altText, String url) {
         markdownBuilder.append("![").append(altText).append("](").append(url).append(")\n\n");
-        return this;
     }
 
-    public MarkdownUtil addHeader(String text, int level) {
+    public void addHeader(String text, int level) {
         markdownBuilder.append("#".repeat(Math.max(0, level))).append(" ").append(text).append("\n\n");
-        return this;
     }
 
 
